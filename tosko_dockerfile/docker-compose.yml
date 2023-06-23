@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  moodle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    volumes:
+      - moodle_data:/bitnami/moodle
+    environment:
+      - MOODLE_DATABASE_TYPE=mysql
+      - MOODLE_DATABASE_HOST=db
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=james
+      - MOODLE_DATABASE_PASSWORD=aguiaCareca
+      - MOODLE_DATABASE_NAME=BaleiaAzul
+    depends_on:
+      - db
+    networks:
+      - moodle_net
+
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_DATABASE=BaleiaAzul
+      - MYSQL_USER=james
+      - MYSQL_PASSWORD=aguiaCareca
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - moodle_net
+
+networks:
+  moodle_net:
+
+volumes:
+  moodle_data:
+  db_data:
