@@ -10,7 +10,7 @@ RUN apt-get install -y apache2
 # Editar o arquivo apache2.conf
 RUN sed -i 's/#AddDefaultCharset ISO-8859-1/AddDefaultCharset ISO-8859-1/' /etc/apache2/apache2.conf
 
-# Instalar o PHP5 e o módulo do Apache
+# Instalar o PHP8.1 e o módulo do Apache
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y php libapache2-mod-php
 

@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8080:80'
-    volumes:
-      - moodle_data:/bitnami/moodle
     environment:
       - MOODLE_DATABASE_TYPE=mysql
       - MOODLE_DATABASE_HOST=db
