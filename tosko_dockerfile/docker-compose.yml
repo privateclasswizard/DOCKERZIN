@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8080:80'
+    volumes:
+      - moodle_data:/var/www/html
     environment:
       - MOODLE_DATABASE_TYPE=mysql
       - MOODLE_DATABASE_HOST=db
@@ -21,7 +23,7 @@ services:
   db:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_ROOT_PASSWORD=aguiaCareca
       - MYSQL_DATABASE=BaleiaAzul
       - MYSQL_USER=james
       - MYSQL_PASSWORD=aguiaCareca

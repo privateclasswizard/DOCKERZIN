@@ -31,6 +31,7 @@ RUN apt-get install -y phpmyadmin
 WORKDIR /var/www/
 COPY moodle-latest-402.tgz .
 RUN tar xvfz /var/www/moodle-latest-402.tgz -C /var/www
+
 # Criar diretório moodledata e definir permissões
 RUN mkdir /var/moodledata
 RUN chmod 777 /var/moodledata

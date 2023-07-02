@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   moodle:
     build:
@@ -7,11 +7,11 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - moodle_data:/bitnami/moodle
+      - moodle_data:/var/www/html
     environment:
-      - MOODLE_DATABASE_TYPE=mysql
+      - MOODLE_DATABASE_TYPE=pgsql
       - MOODLE_DATABASE_HOST=db
-      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_PORT_NUMBER=5432
       - MOODLE_DATABASE_USER=james
       - MOODLE_DATABASE_PASSWORD=aguiaCareca
       - MOODLE_DATABASE_NAME=BaleiaAzul
@@ -21,14 +21,13 @@ services:
       - moodle_net
 
   db:
-    image: mysql:latest
+    image: postgres:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
-      - MYSQL_DATABASE=BaleiaAzul
-      - MYSQL_USER=james
-      - MYSQL_PASSWORD=aguiaCareca
+      - POSTGRES_PASSWORD=aguiaCareca
+      - POSTGRES_DB=BaleiaAzul
+      - POSTGRES_USER=james
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/postgresql/data
     networks:
       - moodle_net
 
